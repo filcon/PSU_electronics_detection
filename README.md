@@ -1,4 +1,3 @@
-# PSU Electronics Eetection
-Identification of electronic components in PSUs with computer vision.
+# PSU Electronics Detection
 
-A Deep Learning approach, using Python, to identify components in PSUs (Power Supply Unit) and defects.
+A Deep Learning approach, using Python, to identify components in PSUs (Power Supply Unit) and if possible defects.
