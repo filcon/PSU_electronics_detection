@@ -1,5 +1,10 @@
 # PSU Electronics Detection
 
+#### 1. Objective
+#### 2. Motivation
+#### 3. Procedure
+#### 4. Results
+
 ## 1. Objective
 Detection and identification of electronic components in Power Supply Units (PSUs) for PCs.
 The result at a first stage should provide identification of major components as ilustrated in the image bellow:
