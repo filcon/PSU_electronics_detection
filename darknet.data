@@ -1,0 +1,7 @@
+classes = 1
+train  = /full/path/to/project/data_train.txt
+valid  = /full/path/to/project/data_test.txt
+names = /full/path/to/project/classes.names
+backup = /full/path/to/project/weights/
+
+
