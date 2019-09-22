@@ -130,11 +130,11 @@ python plotTrainLoss.py /path/to/project/folder/train.log
 ## 4. Results
 While training both transfer learning options, **A** and **B**, were tested.
 
-**Option A** was very slow to reduce the loss and after 200 iteration the loss was not decreasing as desired.
+**Option A** was not doing a good job in reducing the loss and after 200 iterations the loss was higher than desired.
 
-It was decided to switch to **Option B**. After 200 iteration the loss was already much lower and after 800 iterations the model was already much better and successful detection of coils was already achieved.
+Training was stopped and switched to **Option B**, full weights training. After 200 iterations the loss was already much lower and after 800 iterations the model was successful in the detection of coils.
 
-The result can be seen in the test image below.
+An example can be seen in the test image below.
 
 ![DSC_1598_coils](https://user-images.githubusercontent.com/47978862/65394656-e34cc880-dd90-11e9-91e9-303f94a4d3a3.jpg)
 
