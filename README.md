@@ -12,7 +12,7 @@ The result at a first stage should provide identification of major components as
 ![PSU_components_detection_smaller](https://user-images.githubusercontent.com/47978862/65394548-d9769580-dd8f-11e9-960d-e4d4d84326c9.png)
 #### PSU: Corsair SF600 Platinum / Photo source: [jonnyGURU.com](https://www.jonnyguru.com/)
 
-Detection of defects will be adressed later.
+Detection of defects will be addressed later.
 
 ## 2. Motivation
 My passion for PC hardware and deep learning and the desire to combine both to build a computer vision project.
@@ -77,24 +77,24 @@ if(i%1000==0 || (i < 2000 && i%200 == 0)){
 ```
 The original code saves the weights after every 100 iterations until the first 1000 and then after every 10000 iterations. In my case, since for now I'm only training one class much less iterations are required. The new code saves the weights after every 200 iterations until the first 2000 and then after every 1000 iterations.
 
-After the changes darkent as to be recomplied again by running **make**.
+After the changes, darknet has to be recompiled again by running **make**.
 
-If a GPU with CUDA is available it will be extremely usefull to speed up the training. Make sure the latest drivers and CUDA are installed. To make use of the GPU the makefile of darknet was changed from:
+If a GPU with CUDA is available it will be extremely usefull to speed up the training. Make sure the latest drivers and CUDA are installed. To make use of the GPU the **Makefile** of darknet was changed from:
 ```
-CUDA = 0 
+GPU = 0 
 ```
 to
 ```
-CUDA = 1 
+GPU = 1 
 ```
-Save and recomplie again by running **make**. Other options can be used with GPUs but more configurations are required.
+Save and recompile again by running **make**. Other options can be used with GPUs but more configurations are required.
 In the project a Nidia GTX 1050 Ti was used.
 
-Network configuration files with the models architecture and hiperparameters can be found on the cfg folder, inside darknet.
-The used cfg file **yolov3.cfg**, which is provided in this repository, is an adaptation of the **yolov3-voc.cfg**.
+Network configuration files with the models architecture and hiperparameters can be found on the **cfg folder**, inside darknet.
+The used **cfg** file **yolov3.cfg**, which is provided in this repository, is an adaptation of the **yolov3-voc.cfg**.
 
 #### 3.2.2. Transfer learning
-Due to the low number of images it is almost compulsury to use pre-trained network weights to take advantage of transfer learning. YOLOv3 weights trained on ImageNet were downloaded and saved to the darknet folder:
+Due to the low number of images it is almost compulsory to use pre-trained network weights to take advantage of transfer learning. YOLOv3 weights trained on ImageNet were downloaded and saved to the darknet folder:
 ```python
 cd ~/darknet
 wget https://pjreddie.com/media/files/darknet53.conv.74 -O ~/darknet/darknet53.conv.74
@@ -116,7 +116,7 @@ Only the weights of the layers after this line will be updated during backpropag
 No changes are required for **Option B**.
 
 #### 3.2.3. Training
-Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. I a more powerfull GPU was available samller subdivisions could be atempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
+Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. I a more powerfull GPU was available samller subdivisions could be attempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
 
 To start training and generate a log file the following script was used:
 ```python
