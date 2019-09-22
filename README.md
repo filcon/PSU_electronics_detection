@@ -42,10 +42,8 @@ This was performed with **LabelImage**. Instructions for download, install and u
 
 Labels were saved in YOLO format.
 
-#### 3.1.3. Trains-Test Data Split
+#### 3.1.3. Train-Test Data Split
 First images were put in a folder called **images** and the labels in a folder called **labels**.
-
-Another usefull change 
 
 For train test data split the code was adapted from the tutorial and two arguments are included. -p for the percentage of test data and -f to pass the folder were were the images are stored. For the first test I used 90% Train and 10% Test, but 80-20 and 70-30 are usually more common. Example of script:
 
