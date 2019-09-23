@@ -158,10 +158,10 @@ modelConfiguration = "/full/path/to/project/darknet-yolov3.cfg";
 modelWeights = "/full/path/to/project/weights/darknet-yolov3_final.weights";
 ```
 Then run the script with the selected image:
-```python
+```
 python object_detection_yolo.py --image=file_name.jpg
 ```
 
-Further improvement of the model will continue, and the next step will be the addition of more pictures and classes.
+Further improvement of the model will continue, and the next steps will be the addition of more pictures and classes.
 
 Full results with metrics will be presented.
