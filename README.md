@@ -10,7 +10,7 @@ Detection and identification of electronic components in Power Supply Units (PSU
 The result at a first stage should provide identification of major components as illustrated in the image bellow:
 
 ![PSU_components_detection_smaller](https://user-images.githubusercontent.com/47978862/65394548-d9769580-dd8f-11e9-960d-e4d4d84326c9.png)
-#### PSU: Corsair SF600 Platinum / Photo source: [jonnyGURU.com](https://www.jonnyguru.com/)
+##### PSU: Corsair SF600 Platinum / Photo source: [jonnyGURU.com](https://www.jonnyguru.com/)
 
 Detection of defects will be addressed later.
 
@@ -88,7 +88,7 @@ GPU = 1
 Save and recompile again by running **make**. Other options can be used with GPUs but more configurations are required.
 In the project a Nidia GTX 1050 Ti was used.
 
-Network configuration files with the models architecture and hiperparameters can be found on the **cfg folder**, inside darknet.
+Network configuration files with the models architecture and hyperparameters can be found on the **cfg folder**, inside darknet.
 The used **cfg** file **yolov3.cfg**, which is provided in this repository, is an adaptation of the **yolov3-voc.cfg**.
 
 #### 3.2.2. Transfer learning
@@ -101,7 +101,7 @@ Other configuration files and weights can be found and downloaded from the [YOLO
 
 Several options for weights use on the network can be attempted. Two were tested at the moment:
 
-* **Option A:** Use pre-trained weights as starting point for all layers and train new weights just from the last convolutional layer onwards. Before this point all weights remain unchanged.
+* **Option A:** Use pre-trained weights as starting point for all layers and train new weights just from the last convolutional layer onward. Before this point all weights remain unchanged.
 
 To accomplish this the following line of code was included on the **cfg** file, before the last layer I wanted to train:
 ```
@@ -113,15 +113,30 @@ Only the weights of the layers after this line will be updated during backpropag
 
 No changes are required for **Option B**.
 
-#### 3.2.3. Training
-Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. I a more powerfull GPU was available samller subdivisions could be attempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
+#### 3.2.3. Data files
+In the **darknet.data** file it is necessary to provide the number of classes and the full paths to some relevant files and folders:
+```
+classes = 1
+train  = /path/to/project/folder/snowman_train.txt
+valid  = /path/to/project/folder/snowman_test.txt
+names = /path/to/project/folder/classes.names
+backup = /path/to/project/folder/weights/
+```
+The **classes.names** file also needs to be updated with the classes being detected. In my case only 1 class, **coil**, is being detected:
+```
+coil
+```
+More classes will be added soon.
+
+#### 3.2.4. Training
+Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. If a more powerfull GPU was available smaller subdivisions could be attempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
 
 To start training and generate a log file the following script was used:
 ```python
 cd darknet
 ./darknet detector train /path/to/project/folder/darknet.data /path/to/project/folder/yolov3.cfg ./darknet53.conv.74 > /path/to/project/folder/train.log
 ```
-To generate an plot of the loss:
+To generate a plot of the loss:
 ```python
 python plotTrainLoss.py /path/to/project/folder/train.log
 ```
@@ -130,10 +145,13 @@ While training both transfer learning options, **A** and **B**, were tested.
 
 **Option A** was not doing a good job in reducing the loss and after 200 iterations the loss was higher than desired.
 
-Training was stopped and switched to **Option B**, full weights training. After 200 iterations the loss was already much lower and after 800 iterations the model was successful in the detection of coils.
+Stopbackward could have been placed in a different position, e.g. in the middle of the network, so that more layers could have been updated, but training was stopped and the configuration switched to **Option B**. After 200 iterations the loss was already much lower and after 800 iterations the model was already successful in the detection of coils.
 
 An example can be seen in the test image below.
 
 ![DSC_1598_coils](https://user-images.githubusercontent.com/47978862/65394656-e34cc880-dd90-11e9-91e9-303f94a4d3a3.jpg)
+##### PSU: Corsair TX750M (2017) / Photo source: [jonnyGURU.com](https://www.jonnyguru.com/)
 
-Further improvement of the model will continue, with more than one class, and full results with metric will be presented.
+Further improvement of the model will continue, and the next step will be the addition of more pictures and classes.
+
+Full results with metrics will be presented.
