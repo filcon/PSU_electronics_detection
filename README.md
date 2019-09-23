@@ -129,7 +129,7 @@ coil
 More classes will be added soon.
 
 #### 3.2.4. Training
-Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. If a more powerfull GPU was available smaller subdivisions could be attempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
+Due to GPU memory limitations, the number of subdivisions on the **cfg** file was increased to 64 to avoid memory errors, while maintaining the batch size of 64. If a more powerfull GPU was available smaller subdivisions could be attempted, e.g. 1, 2, 4, 8, 16 or 32. For more details on selecting batch and sudbdivisoon, and other hyperparameters, check the [tutorial](https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/).
 
 To start training and generate a log file the following script was used:
 ```python
@@ -151,6 +151,16 @@ An example can be seen in the test image below.
 
 ![DSC_1598_coils](https://user-images.githubusercontent.com/47978862/65394656-e34cc880-dd90-11e9-91e9-303f94a4d3a3.jpg)
 ##### PSU: Corsair TX750M (2017) / Photo source: [jonnyGURU.com](https://www.jonnyguru.com/)
+
+To test the model two paths need to be updated in the file **object_detection_yolo.py**:
+```python
+modelConfiguration = "/full/path/to/project/darknet-yolov3.cfg";
+modelWeights = "/full/path/to/project/weights/darknet-yolov3_final.weights";
+```
+Then run the script with the selected image:
+```python
+python object_detection_yolo.py --image=file_name.jpg
+```
 
 Further improvement of the model will continue, and the next step will be the addition of more pictures and classes.
 
